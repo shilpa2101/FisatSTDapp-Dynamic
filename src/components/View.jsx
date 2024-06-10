@@ -9,7 +9,7 @@ const View = () => {
 
     )
     const fetchData=()=>{
-    axios.get("https://anishpdm.github.io/dummy-api-new/student.json").then(
+    axios.get("https://courseapplogix.onrender.com/getdata").then(
         (response)=>{
             changedata(response.data)
             console.log(response.data)
@@ -17,7 +17,7 @@ const View = () => {
     ).catch(
         (error)=>{
             console.log(error.message)
-
+            alert(error.message)
         }
     ).finally()
 }
@@ -32,8 +32,8 @@ useEffect(
                 <table class="table">
                         <thead>
                             <tr>
-                            <th scope="col">id</th>
-                            <th scope="col">First NAme</th>
+                            
+                            <th scope="col">First Name</th>
                             <th scope="col">Last Name</th>
                             <th scope="col">College</th>
                             <th scope="col">dob</th>
@@ -47,7 +47,7 @@ useEffect(
                             (value,index)=>{
                                 return  <tbody>
                                         <tr>
-                                        <th scope="row">{value._id}</th>
+                                        <td>{index+1}</td>
                                         <td>{value.firstname}</td>
                                         <td>{value.lastname}</td>
                                         <td>{value.college}</td>

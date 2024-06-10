@@ -1,20 +1,21 @@
 import React, { useState } from 'react'
 import Navbar from './Navbar'
+import axios from 'axios'
 
 const AddStudent = () => {
     const [fdata,stdata]=useState(
         {
-            "fname":"",
-            "lname":"",
-            "clg":"",
+            "firstname":"",
+            "lastname":"",
+            "college":"",
             "dob":"",
-            "gender":"",
-            "cse":"",
-            "mob":"",
-            "eml":"",
-            "adr":"",
-            "lnge":"",
-            "time":""
+            // "gender":"",
+            "course":"",
+            "mobile":"",
+            "email":"",
+            "address":""
+            // "lnge":"",
+            // "time":""
         }
     )
     const inputHandler=(event)=>{
@@ -22,6 +23,17 @@ const AddStudent = () => {
     }
     const readValue=()=>{
         console.log(fdata)
+        axios.post("https://courseapplogix.onrender.com/addstudents",fdata).then(
+            (response)=>{
+                console.log(response.data)
+                if (response.data.status=="success") {
+                    alert("success")
+                } else {
+                    alert("error")
+                }
+            }
+        ).catch()
+
     }
   return (
     <div>
@@ -32,21 +44,21 @@ const AddStudent = () => {
                     <div className="row g-3">
                         <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
                             <label htmlFor="" className="form-label">First name</label>
-                            <input type="text" className="form-control" name='fname' value={fdata.fname} onChange={inputHandler} />
+                            <input type="text" className="form-control" name='firstname' value={fdata.firstname} onChange={inputHandler} />
                         </div>
                         <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
                             <label htmlFor="" className="form-label">Lastname</label>
-                            <input type="text" className="form-control" name='lname' value={fdata.lname} onChange={inputHandler}/>
+                            <input type="text" className="form-control" name='lastname' value={fdata.lastname} onChange={inputHandler}/>
                         </div>
                         <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                             <label htmlFor="" className="form-label">College</label>
-                            <input type="text" className="form-control" name='clg' value={fdata.clg} onChange={inputHandler}/>
+                            <input type="text" className="form-control" name='college' value={fdata.college} onChange={inputHandler}/>
                         </div>
                         <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
                             <label htmlFor="" className="form-label">D-O-B</label>
                             <input type="date" name="dob" id="" className="form-control" value={fdata.dob} onChange={inputHandler}/>
                         </div>
-                        <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                        {/* <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
                         <label htmlFor="gender" className="form-label">Gender</label>
                         <br />
                         <label htmlFor="male" className="form-label">Male</label>
@@ -59,11 +71,11 @@ const AddStudent = () => {
                         
                         <label htmlFor="others" className="form-label">Others</label>
                         <input type="radio" name="gender" id="others" value="others" onChange={inputHandler} checked={fdata.gender === 'others'} />
-                        </div>
+                        </div> */}
 
                         <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
                             <label htmlFor="" className="form-label">Course</label>
-                            <select name="cse" value={fdata.cse} onChange={inputHandler} id="" className="form-control">
+                            <select name="course" value={fdata.course} onChange={inputHandler} id="" className="form-control">
                                 <option value="">...Select Course...</option>
                                 <option value="BCA">BCA</option>
                                 <option value="MCA">MCA</option>
@@ -72,17 +84,17 @@ const AddStudent = () => {
                         </div>
                         <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
                             <label htmlFor="" className="form-label">Mobile</label>
-                            <input type="text" className="form-control" name='mob' value={fdata.mob} onChange={inputHandler} />
+                            <input type="text" className="form-control" name='mobile' value={fdata.mobile} onChange={inputHandler} />
                         </div>
                         <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
                             <label htmlFor="" className="form-label">Email</label>
-                        <input type="email" name="eml" id="" className="form-control" value={fdata.eml} onChange={inputHandler}/>
+                        <input type="email" name="email" id="" className="form-control" value={fdata.email} onChange={inputHandler}/>
                         </div>
                         <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                             <label htmlFor="" className="form-label">Address</label>
-                            <input type="text" className="form-control"name='adr' value={fdata.adr} onChange={inputHandler}/>
+                            <input type="text" className="form-control"name='address' value={fdata.address} onChange={inputHandler}/>
                         </div>
-                        <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                        {/* <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
                             <label htmlFor="" className="form-label">language</label><br></br>
                             <input type="checkbox" name=""  id=""  />
                             <label htmlFor="" className="form-label">Hindi</label>
@@ -92,11 +104,11 @@ const AddStudent = () => {
                             &nbsp;&nbsp;
                             <input type="checkbox" name=""  id=""  />
                             <label htmlFor="" className="form-label">English</label>
-                        </div>
-                        <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                        </div> */}
+                        {/* <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
                             <label htmlFor="" className="form-label">Joined Time</label>
                             <input type="time" name="time" value={fdata.time} onChange={inputHandler}id="" className="form-control" />
-                        </div>
+                        </div> */}
                         <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
                             <button className="btn btn-primary" onClick={readValue}>Submit</button>
                         </div>
