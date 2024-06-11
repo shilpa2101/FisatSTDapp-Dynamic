@@ -9,7 +9,7 @@ const View = () => {
 
     )
     const fetchData=()=>{
-    axios.get("https://courseapplogix.onrender.com/getdata").then(
+    axios.get("http://localhost:8080/view").then(
         (response)=>{
             changedata(response.data)
             console.log(response.data)
@@ -17,7 +17,7 @@ const View = () => {
     ).catch(
         (error)=>{
             console.log(error.message)
-            alert(error.message)
+            
         }
     ).finally()
 }
@@ -33,29 +33,31 @@ useEffect(
                         <thead>
                             <tr>
                             
-                            <th scope="col">First Name</th>
-                            <th scope="col">Last Name</th>
-                            <th scope="col">College</th>
+                            <th scope="col"> Name</th>
+                            <th scope="col">Adm no</th>
+                            <th scope="col">Roll no</th>
                             <th scope="col">dob</th>
-                            <th scope="col">course</th>
-                            <th scope="col">mobile</th>
+                            <th scope="col">parentname</th>
+                            <th scope="col">College</th>
                             <th scope="col">email</th>
-                            <th scope="col">address</th>
-                            </tr>
+                            <th scope="col">password</th>
+                                                       </tr>
                         </thead>
                         {stdata.map(
                             (value,index)=>{
                                 return  <tbody>
                                         <tr>
                                         <td>{index+1}</td>
-                                        <td>{value.firstname}</td>
-                                        <td>{value.lastname}</td>
-                                        <td>{value.college}</td>
+                                        <td>{value.name}</td>
+                                        <td>{value.admNo}</td>
+                                        <td>{value.rollNo}</td>
                                         <td>{value.dob}</td>
-                                        <td>{value.course}</td>
-                                        <td>{value.mobile}</td>
+                                        <td>{value.parentname}</td>
+                                        <td>{value.college}</td>
+                                      
+                                        
                                         <td>{value.email}</td>
-                                        <td>{value.address}</td>
+                                        <td>{value.password}</td>
                                         </tr>                        
                                     </tbody>
                             }
